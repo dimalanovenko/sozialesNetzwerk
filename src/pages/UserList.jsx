@@ -1,19 +1,23 @@
-import {Link} from "react-router";
-import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
+import {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getUsers} from "../features/userSlice.js";
-import ava from "../assets/ava.png"
+import ava from "../assets/ava.png";
 
 const UserList = () => {
     const dispatch = useDispatch();
     const users = useSelector((state) => state.users.usersArr);
 
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
     const [value, setValue] = useState('');
     const [filteredUsers, setFilteredUsers] = useState([]);
+    const [isFocused, setIsFocused] = useState(false);
+    const inputRef = useRef(null);
+
 
     useEffect(() => {
         dispatch(getUsers());
-    }, [])
+    }, []);
 
     useEffect(() => {
         const filtered = users.filter(user =>
@@ -22,40 +26,64 @@ const UserList = () => {
         setFilteredUsers(filtered);
     }, [value, users]);
 
-    return (
-        <div className="flex flex-col items-center justify-between h-full bg-[#FAFBFF]">
-            <div className="text-[#707988]">
-                <div className="flex fixed bg-zinc-900">
-                    <input
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        className="bg-white fixed border border-[#5D6778] rounded-lg mt-10 mb-3 py-1 px-2 w-70"
-                        type="text"
-                        placeholder="Search"
-                    />
-                </div>
-                <ul className="flex flex-col gap-2 text-[#707988] overflow-scroll my-20">
-                    {filteredUsers.map((user) => (
-                        <li
-                            className="mt-2 w-70"
-                            key={user._id}>
-                            <Link to={user.username}>
-                                <div
-                                    className="flex items items-center gap-2 bg-white rounded-lg p-2 cursor-pointer">
-                                    <img
-                                        className="w-10 h-10 rounded-full"
-                                        src={user.avatar || ava}
-                                        alt="avatar"
-                                    />
-                                    <h1>{user.username}</h1>
-                                </div>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </div>
-    )
-}
+    const handleBlur = () => {
+        setTimeout(() => setIsFocused(false), 150);
+    };
 
-export default UserList
+    return (
+        <div className="relative lg:w-full w-4/5 mx-auto max-w-md lg:bg-white">
+            <div className="relative w-full lg:w-145.5">
+                <svg
+                    width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none lg:mt-0 mt-2 lg:ml-3"
+                >
+                    <path
+                        d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
+                        stroke="#5D6778" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M17.5 17.5L13.875 13.875" stroke="#5D6778" strokeWidth="1.75" strokeLinecap="round"
+                          strokeLinejoin="round"/>
+                </svg>
+
+                <input
+                    ref={inputRef}
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={handleBlur}
+                    className="lg:pl-15 pl-10 text-gray-600 bg-white border border-[#E2E8F0] rounded-lg lg:mt-0 mt-5 py-2 px-4 lg:h-11 w-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                    type="text"
+                    placeholder="Suchen"
+                />
+            </div>
+
+            {isFocused && (
+                <ul className="lg:w-full absolute left-0 mt-2 mx-auto w-[95%] max-h-64 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-lg z-50">
+                    {filteredUsers.length === 0 ? (
+                            <li className="p-4 text-center text-gray-400">
+                                Nicht gefunden
+                            </li>
+                        )
+                        :
+                        (
+                            filteredUsers.map((user) => (
+                                <li className='lg:w-full' key={user._id}>
+                                    <Link to={isMobile ? `/search/${user.username}` : `/feed/${user.username}`}>
+                                        <div className="flex items-center gap-3 p-3 hover:bg-gray-100 cursor-pointer">
+                                            <img
+                                                className="w-10 h-10 rounded-full"
+                                                src={user.avatar || ava}
+                                                alt="avatar"
+                                            />
+                                            <span className="text-[#0C1024] font-medium">{user.username}</span>
+                                        </div>
+                                    </Link>
+                                </li>
+                            ))
+                        )}
+                </ul>
+            )}
+        </div>
+    );
+};
+
+export default UserList;

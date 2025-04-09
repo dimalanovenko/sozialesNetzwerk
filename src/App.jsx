@@ -28,7 +28,9 @@ function App() {
             <Routes>
                 <Route path="/" element={<Feed/>}/>
                 <Route path="/auth" element={<Auth/>}/>
-                <Route path="/feed" element={<Feed/>}/>
+                <Route path="/feed" element={<Feed />}>
+                    <Route path=":username" element={<User/>}/>
+                </Route>
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/change_profile" element={<ChangeProfile/>}/>
                 <Route path="/search" element={<UserList/>}/>

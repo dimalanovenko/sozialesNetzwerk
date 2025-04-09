@@ -42,7 +42,7 @@ const User = () => {
                 <li className="flex flex-col items-center text-[#5D6778] text-xl">
                     {'@' + user.username}
                 </li>
-                <li className="w-[50%] mx-auto text-center flex-col items-center text-lg text-[#4B5669]">
+                <li className="w-[50%] lg:w-full mx-auto text-center flex-col items-center text-lg text-[#4B5669]">
                     {user.bio}
                 </li>
                 <li className="flex flex-col items-center text-lg text-[#4B5669]">
