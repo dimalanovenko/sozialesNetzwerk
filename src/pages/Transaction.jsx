@@ -25,31 +25,30 @@ const Transaction = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-between">
-            <ul className="flex flex-col mt-40 font-bold text-xl">
-                <li className="flex flex-col gap-2 mt-2 text-white">
-                    <h1>Amount</h1>
+        <div className="flex flex-col items-center justify-center h-[100vh]">
+            <ul className="flex flex-col text-lg gap-4">
+                <li>
                     <input
+                        placeholder='Amount'
                         value={amount}
-                        onChange={(e) => setAmount(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' ? handleSend() : null}
-                        onChange={(e) => setUserName(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' ? handleSend() : null}
-                        className="border rounded-lg border-teal-400"
+                        onChange={(e) => setAmount(Number(e.target.value))}
+                        className="text-[#4B5669] border rounded-lg border-[#E2E8F0] py-2 pl-6"
                         type="text"
                     />
                 </li>
-                <li className="flex flex-col gap-2 mt-2 text-white">
-                    <h1>userName</h1>
+                <li className='flex flex-col'>
                     <input
+                        placeholder='Username'
                         value={userName}
-                        className="border rounded-lg border-teal-400"
+                        onChange={(e) => setUserName(e.target.value)}
+                        className="text-[#4B5669] border rounded-lg border-[#E2E8F0] py-2 pl-6"
+                    />
+                    <button
+                        onKeyDown={(e) => e.key === 'Enter' ? handleSend() : null}
                         onClick={() => {
                             handleSend()
                         }}
-                    />
-                    <button
-                        className="bg-zinc-800 text-teal-400 rounded-2xl py-2 px-4 cursor-pointer mt-5"
+                        className="flex justify-center items-center gap-2 bg-[#4C68D5] text-white rounded-2xl py-2 px-4 cursor-pointer mt-5"
                     >
                         Send Money
                     </button>

@@ -2,11 +2,9 @@ import {getPosts} from "../features/feedSlice.js";
 import {logout} from "../features/authSlice.js";
 import {useSelector, useDispatch} from "react-redux";
 import {useEffect} from "react";
-import {RxExit} from "react-icons/rx";
-import Nav from "../components/Nav.jsx";
 import {Link} from "react-router";
 import Post from "../components/Post.jsx";
-import addPost from "../pages/addPost.jsx";
+import AddPost from "./AddPost.jsx";
 
 const Feed = () => {
     const dispatch = useDispatch();
@@ -17,8 +15,8 @@ const Feed = () => {
     }, []);
 
     return (
-        <div className="flex flex-col items-center justify-between">
-            <div className="w-full flex justify-between items-center text-white gap-3 fixed bg-white px-2 py-3">
+        <div className="w-full flex flex-col items-center justify-between bg-[#FAFBFF]">
+            <div className="w-full flex justify-around items-center text-white fixed bg-white px-2 py-3 z-50">
                 <div className="flex items-center">
                     <i>
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,21 +32,22 @@ const Feed = () => {
                         Sociales-Netzwerk
                     </h1>
                 </div>
+
                 <Link
                     onClick={() => dispatch(logout())}
                     to="/auth"
                 >
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_125_226)">
-                            <path d="M13.3333 13.3333L10 10L6.66666 13.3333" stroke="#5D6778" stroke-width="1.75"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M10 10V17.5" stroke="#5D6778" stroke-width="1.75" stroke-linecap="round"
-                                  stroke-linejoin="round"/>
+                        <g clipPath="url(#clip0_125_226)">
+                            <path d="M13.3333 13.3333L10 10L6.66666 13.3333" stroke="#5D6778" strokeWidth="1.75"
+                                  strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M10 10V17.5" stroke="#5D6778" strokeWidth="1.75" strokeLinecap="round"
+                                  strokeLinejoin="round"/>
                             <path
                                 d="M16.9917 15.325C17.8044 14.8819 18.4465 14.1807 18.8166 13.3322C19.1866 12.4836 19.2635 11.536 19.0352 10.6389C18.8068 9.74179 18.2862 8.94626 17.5556 8.37787C16.8249 7.80948 15.9257 7.50061 15 7.5H13.95C13.6978 6.52436 13.2276 5.61861 12.575 4.85082C11.9223 4.08304 11.104 3.47321 10.1817 3.06717C9.25946 2.66113 8.25712 2.46946 7.25009 2.50657C6.24307 2.54367 5.25755 2.80858 4.36764 3.28138C3.47774 3.75419 2.70659 4.42258 2.11218 5.23631C1.51777 6.05005 1.11557 6.98794 0.935814 7.97949C0.756055 8.97104 0.803418 9.99044 1.07434 10.961C1.34527 11.9317 1.8327 12.8282 2.5 13.5833"
-                                stroke="#5D6778" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M13.3333 13.3333L10 10L6.66666 13.3333" stroke="#5D6778" stroke-width="1.75"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
+                                stroke="#5D6778" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M13.3333 13.3333L10 10L6.66666 13.3333" stroke="#5D6778" strokeWidth="1.75"
+                                  strokeLinecap="round" strokeLinejoin="round"/>
                         </g>
                         <defs>
                             <clipPath id="clip0_125_226">
@@ -58,9 +57,8 @@ const Feed = () => {
                     </svg>
                 </Link>
             </div>
-            <addPost>
-            </addPost>
-            <ul className="flex flex-col items-center justify-between my-20">
+            <AddPost/>
+            <ul className="flex flex-col items-center justify-between mt-2 pb-18 gap-2">
                 {filteredPosts.map((post) => (
                     <Post
                         post={post}

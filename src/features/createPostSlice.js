@@ -2,11 +2,8 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
 import {initialState as authInitialState} from "./authSlice.js";
 
-export const initialState = {
+export const initialState = {}
 
-}
-
-// async request
 export const createPost = createAsyncThunk(
     'createPost/createPost',
     async ({title, description, status, image, video}) => {

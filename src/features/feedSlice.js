@@ -7,11 +7,10 @@ export const initialState = {
     filteredPosts: [],
     myPosts: [],
     filteredMyPosts: [],
-    status: '',
+    status: null,
     error: null,
 }
 
-// async request
 export const getPosts = createAsyncThunk(
     'feed/getPosts',
     async () => {
@@ -25,12 +24,11 @@ export const getPosts = createAsyncThunk(
         return response.data;
     })
 
-// async request
 export const getMyPosts = createAsyncThunk(
     'feed/getMyPosts',
     async (userId) => {
         const response = await axios.get('http://49.13.31.246:9191/posts', {
-            params: { user_id: userId },
+            params: {user_id: userId},
             headers: {
                 "x-access-token": authInitialState.token
             }
@@ -59,20 +57,23 @@ export const deletePost = createAsyncThunk(
 );
 
 const isValidMedia = (url) => {
-    if (typeof url !== 'string' || !url.trim()) return false;
+    if (!url || typeof url !== 'string' || !url.trim()) return false;
 
-    const isValidUrl = /^(https?:\/\/)/i.test(url);
+    try {
+        new URL(url);
+    } catch {
+        return false;
+    }
 
-    // Проверка для изображений
-    const imageExtensions = /\.(jpeg|jpg|png|gif|webp|svg)$/i;
+    const imageExtensions = /\.(jpeg|jpg|png|gif|webp|svg|bmp)$/i;
 
-    // Проверка для видео
-    const videoExtensions = /\.(mp4|webm|ogg|mov|avi|wmv|flv|mkv)$/i;
+    const videoExtensions = /\.(mp4|webm|ogg|mov|avi|wmv|flv|mkv|3gp)$/i;
 
-    // Проверка на YouTube-видео
-    const isYoutubeUrl = /(youtube\.com|youtu\.be)/i.test(url);
+    const youtubePattern = /(youtube\.com|youtu\.be)/i;
 
-    return isValidUrl && (imageExtensions.test(url) || videoExtensions.test(url) || isYoutubeUrl);
+    return imageExtensions.test(url) ||
+        videoExtensions.test(url) ||
+        youtubePattern.test(url);
 };
 
 const feedSlice = createSlice({
@@ -86,19 +87,20 @@ const feedSlice = createSlice({
                 state.filteredPosts = action.payload
                     .reverse()
                     .filter((post) =>
-                        post.image && isValidMedia(post.image || post.video)
+                        (post.image && isValidMedia(post.image)) ||
+                        (post.video && isValidMedia(post.video))
                     );
-
-                console.log('Отфильтрованные посты:', state.filteredPosts);
+                console.log('filtered posts:', state.filteredPosts);
             })
             .addCase(getMyPosts.fulfilled, (state, action) => {
                 state.myPosts = action.payload;
+                console.log('my posts:', state.myPosts);
                 state.filteredMyPosts = action.payload
                     .reverse()
                     .filter((post) =>
-                        post.image && isValidMedia(post.image)
+                        (post.image && isValidMedia(post.image)) ||
+                        (post.video && isValidMedia(post.video))
                     );
-
                 console.log('filtered my posts:', state.filteredMyPosts);
             })
             .addCase(deletePost.fulfilled, (state) => {

@@ -1,12 +1,8 @@
-import {Link} from "react-router";
-import {logout} from "../features/authSlice.js";
-import {RxExit} from "react-icons/rx";
-import Nav from "../components/Nav.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
 import {getUser} from "../features/userSlice.js";
-import ava from "../assets/img/ava.png";
+import ava from "../assets/ava.png";
 import {follow, unfollow} from "../features/followSlice.js";
 
 const User = () => {
@@ -33,61 +29,67 @@ const User = () => {
     }, [dispatch, user.followers])
 
     return (
-        <div className="flex flex-col items-center justify-between">
-            <div>
-                <ul className="mt-40 flex flex-col gap-3">
-                    <img
-                        className="w-40 h-40 rounded-full text-white text-center"
-                        src={user.avatar === "" ? ava : user.avatar}
-                        alt="avatar"
-                    />
-                    <li className="flex flex-col items-center text-teal-400 text-2xl font-bold">
-                        username:
-                        <span className="text-white text-sm font-medium">
-                        {user.username}
+        <div className="flex flex-col justify-between">
+            <ul className="mt-20 flex flex-col items-center gap-3.5">
+                <img
+                    className="w-40 h-40 rounded-full"
+                    src={user.avatar === "" ? ava : user.avatar}
+                    alt="avatar"
+                />
+                <li className="flex flex-col items-center text-[#27364B] text-2xl font-bold">
+                    {user.fullName}
+                </li>
+                <li className="flex flex-col items-center text-[#5D6778] text-xl">
+                    {'@' + user.username}
+                </li>
+                <li className="w-[50%] mx-auto text-center flex-col items-center text-lg text-[#4B5669]">
+                    {user.bio}
+                </li>
+                <li className="flex flex-col items-center text-lg text-[#4B5669]">
+                    <span className="text-[#27364B] text-2xl font-medium">
+                        {user.posts_count}
                     </span>
-                    </li>
-                    <li className="flex flex-col items-center text-teal-400 text-2xl font-bold">
-                        followers:
-                        <span className="text-white text-sm font-medium">
-                        {followers}
+                    Posts
+                </li>
+                <li className="flex flex-col items-center text-lg text-[#4B5669]">
+                    <span className="text-[#27364B] text-2xl font-medium">
+                        {user.followers}
                     </span>
-                    </li>
-                    <li className="flex flex-col items-center text-teal-400 text-2xl font-bold">
-                        following:
-                        <span className="text-white text-sm font-medium">
+                    Followers
+                </li>
+                <li className="flex flex-col items-center text-lg text-[#4B5669]">
+                    <span className="text-[#27364B] text-2xl font-medium">
                         {user.following}
                     </span>
-                    </li>
-                    <li className="flex flex-col items-center gap-5">
-                        {followed ?
-                            <button
-                                onClick={() => {
-                                    setFollowed(false)
-                                    dispatch(unfollow(user.username))
-                                    setFollowers((prev) => prev - 1);
-                                    localStorage.setItem(`is_${username}_followed`, "false");
-                                }}
-                                className="bg-zinc-800 text-teal-400 rounded-2xl py-2 px-4 cursor-pointer mt-5
-                                hover:bg-teal-400 hover:text-zinc-800">
-                                unfollow
-                            </button>
-                            :
-                            <button
-                                onClick={() => {
-                                    setFollowed(true)
-                                    dispatch(follow(user.username))
-                                    setFollowers((prev) => prev + 1);
-                                    localStorage.setItem(`is_${username}_followed`, "true");
-                                }}
-                                className="bg-zinc-800 text-teal-400 rounded-2xl py-2 px-4 cursor-pointer mt-5
-                                hover:bg-teal-400 hover:text-zinc-800">
-                                follow
-                            </button>
-                        }
-                    </li>
-                </ul>
-            </div>
+                    Following
+                </li>
+                <li className="flex flex-col items-center gap-5">
+                    {followed ?
+                        <button
+                            onClick={() => {
+                                setFollowed(false)
+                                dispatch(unfollow(user.username))
+                                setFollowers((prev) => prev - 1);
+                                localStorage.setItem(`is_${username}_followed`, "false");
+                            }}
+                            className="bg-[#4C68D5] text-white rounded-2xl py-2 px-4 cursor-pointer mt-5
+                                hover:bg-white hover:text-zinc-800">
+                            unfollow
+                        </button>
+                        :
+                        <button
+                            onClick={() => {
+                                setFollowed(true)
+                                dispatch(follow(user.username))
+                                setFollowers((prev) => prev + 1);
+                                localStorage.setItem(`is_${username}_followed`, "true");
+                            }}
+                            className="bg-[#4C68D5] text-white rounded-2xl py-2 px-4 cursor-pointer mt-5">
+                            follow
+                        </button>
+                    }
+                </li>
+            </ul>
         </div>
     )
 }
