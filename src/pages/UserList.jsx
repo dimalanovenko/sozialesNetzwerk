@@ -31,8 +31,8 @@ const UserList = () => {
     };
 
     return (
-        <div className="relative lg:w-full w-4/5 mx-auto max-w-md lg:bg-white">
-            <div className="relative w-full lg:w-145.5">
+        <div className='w-full'>
+            <div className="relative lg:w-full w-9/10 mx-auto lg:mx-0 lg:h-24 lg:flex lg:items-center">
                 <svg
                     width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
                     className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none lg:mt-0 mt-2 lg:ml-3"
@@ -50,14 +50,15 @@ const UserList = () => {
                     onChange={(e) => setValue(e.target.value)}
                     onFocus={() => setIsFocused(true)}
                     onBlur={handleBlur}
-                    className="lg:pl-15 pl-10 text-gray-600 bg-white border border-[#E2E8F0] rounded-lg lg:mt-0 mt-5 py-2 px-4 lg:h-11 w-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                    className="lg:pl-15 pl-10 text-gray-600 border border-[#E2E8F0] rounded-lg lg:mt-0 mt-5 py-2 px-4 lg:h-11 w-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 bg-transparent"
                     type="text"
                     placeholder="Suchen"
                 />
             </div>
 
+
             {isFocused && (
-                <ul className="lg:w-full absolute left-0 mt-2 mx-auto w-[95%] max-h-64 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-lg z-50">
+                <ul className="lg:w-4/10 lg:absolute lg:mt-[-1rem] mt-2 mx-auto w-9/10 max-h-64 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-lg z-50">
                     {filteredUsers.length === 0 ? (
                             <li className="p-4 text-center text-gray-400">
                                 Nicht gefunden

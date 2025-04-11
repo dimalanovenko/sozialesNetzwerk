@@ -1,31 +1,40 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {createPost} from "../features/createPostSlice.js";
 import ava from "../assets/ava.png";
+import {getPosts} from "../features/feedSlice.js";
+import {getProfile} from "../features/profileSlice.js";
 
 const AddPost = () => {
-    const myProfile = useSelector(state => state.profile.profile);
     const dispatch = useDispatch();
 
     const [description, setDescription] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [showUrlInput, setShowUrlInput] = useState(false);
+    const [isFocused, setIsFocused] = useState(false);
+
+    useEffect(() => {
+        dispatch(getProfile());
+    }, []);
+
+    const myProfile = useSelector(state => state.profile.profile);
 
     const handleSubmit = () => {
         if (!description.trim()) return;
 
         dispatch(createPost({
-            title: "Profil Bild",
+            title: "",
             description,
             status: "PUBLISHED",
             image: imageUrl,
             video: ""
         }));
 
-        // Сброс формы
         setDescription('');
         setImageUrl('');
         setShowUrlInput(false);
+
+        dispatch(getPosts());
     };
 
     const toggleUrlInput = () => {
@@ -36,7 +45,7 @@ const AddPost = () => {
     };
 
     return (
-        <div className='w-full bg-white mt-16'>
+        <div className='w-full bg-white mt-20 lg:mt-0 lg:mb-8 lg:py-2 lg:rounded-lg shadow-md '>
             <div className="w-[90%] mx-auto flex items-start justify-around gap-2 pb-2 pt-4">
                 <img
                     className="w-14 h-14 rounded-full mr-2"
@@ -48,7 +57,8 @@ const AddPost = () => {
                         placeholder="Was hast du auf dem Herzen?"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        className="w-full text-[#838B98] text-sm font-normal"
+                        onFocus={() => setIsFocused(true)}
+                        className="w-full text-[#838B98] text-sm font-normal focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded-sm mt-4 py-1 pl-2"
                         type="text"
                     />
                     {showUrlInput && (
@@ -56,7 +66,7 @@ const AddPost = () => {
                             placeholder="Bild-URL eingeben"
                             value={imageUrl}
                             onChange={(e) => setImageUrl(e.target.value)}
-                            className="w-full text-[#838B98] text-sm font-normal border border-gray-300 p-2 rounded"
+                            className="w-full text-[#838B98] text-sm font-normal border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded-sm mt-4 py-1 pl-2"
                             type="url"
                         />
                     )}

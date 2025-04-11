@@ -45,7 +45,7 @@ const Post = ({post}) => {
     return (
         <li
             className="w-full max-w-full flex flex-col items-start gap-3
-            bg-white pb-4 shadow-md"
+            bg-white pb-4 shadow-md lg:rounded-lg"
             key={post._id}
         >
 
