@@ -53,7 +53,7 @@ const Auth = () => {
     };
 
     return (
-        <div className="flex flex-col items-center text-white gap-3 mt-[25%]">
+        <div className="flex flex-col items-center justify-center text-white gap-3 h-[100vh]">
             <div className="flex items-center">
                 <i>
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,7 +98,6 @@ const Auth = () => {
                     </>
                 )}
                 <button
-                    // onClick={() => dispatch(getPosts())}
                     className="w-full bg-[#0C1024] text-white rounded-[6px] py-3 px-6 cursor-pointer mt-[24px]"
                     type="submit"
                 >
@@ -109,7 +108,7 @@ const Auth = () => {
                 className='text-[#4B5669] mt-4'
                 onClick={() => setIsSignUp(!isSignUp)}>
                 {isSignUp ? <p className='cursor-pointer'>Haben Sie schon ein Konto? <span className='font-bold'>Anmelden</span></p>  :
-                    <p className='cursor-pointer'>Don't have an account?  <span className='font-bold'>Registrieren</span></p>
+                    <p className='cursor-pointer'>Haben Sie noch kein Konto? <span className='font-bold'>Registrieren</span></p>
                 }
             </button>
         </div>

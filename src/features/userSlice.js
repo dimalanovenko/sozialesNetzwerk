@@ -55,5 +55,4 @@ const userSlice = createSlice({
     }
 })
 
-// export const {} = feedSlice.actions;
 export default userSlice.reducer;

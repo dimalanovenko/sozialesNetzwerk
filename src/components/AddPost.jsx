@@ -10,8 +10,9 @@ const AddPost = () => {
 
     const [description, setDescription] = useState('');
     const [imageUrl, setImageUrl] = useState('');
+    const [videoUrl, setVideoUrl] = useState('');
+    const [mediaType, setMediaType] = useState('');
     const [showUrlInput, setShowUrlInput] = useState(false);
-    const [isFocused, setIsFocused] = useState(false);
 
     useEffect(() => {
         dispatch(getProfile());
@@ -26,22 +27,26 @@ const AddPost = () => {
             title: "",
             description,
             status: "PUBLISHED",
-            image: imageUrl,
-            video: ""
+            image: mediaType === 'image' ? imageUrl : null,
+            video: mediaType === 'video' ? videoUrl : null,
         }));
 
         setDescription('');
         setImageUrl('');
+        setVideoUrl('');
+        setMediaType('');
         setShowUrlInput(false);
 
         dispatch(getPosts());
     };
 
     const toggleUrlInput = () => {
-        setShowUrlInput(!showUrlInput);
         if (showUrlInput) {
             setImageUrl('');
+            setVideoUrl('');
+            setMediaType('');
         }
+        setShowUrlInput(!showUrlInput);
     };
 
     return (
@@ -57,19 +62,47 @@ const AddPost = () => {
                         placeholder="Was hast du auf dem Herzen?"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        onFocus={() => setIsFocused(true)}
                         className="w-full text-[#838B98] text-sm font-normal focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded-sm mt-4 py-1 pl-2"
                         type="text"
                     />
                     {showUrlInput && (
-                        <input
-                            placeholder="Bild-URL eingeben"
-                            value={imageUrl}
-                            onChange={(e) => setImageUrl(e.target.value)}
-                            className="w-full text-[#838B98] text-sm font-normal border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded-sm mt-4 py-1 pl-2"
-                            type="url"
-                        />
+                        <div className="flex flex-col gap-2">
+                            <select
+                                value={mediaType}
+                                onChange={(e) => {
+                                    setMediaType(e.target.value);
+                                    setImageUrl('');
+                                    setVideoUrl('');
+                                }}
+                                className="w-full text-sm text-[#838B98] border border-gray-300 rounded-sm py-1 pl-2 "
+                            >
+                                <option value="">Media-Typ wählen</option>
+                                <option value="image">Bild</option>
+                                <option value="video">Video</option>
+                            </select>
+
+                            {mediaType === 'image' && (
+                                <input
+                                    placeholder="Bild-URL eingeben"
+                                    value={imageUrl}
+                                    onChange={(e) => setImageUrl(e.target.value)}
+                                    className="w-full text-[#838B98] text-sm border border-gray-300 rounded-sm py-1 pl-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                    type="url"
+                                />
+                            )}
+
+                            {mediaType === 'video' && (
+                                <input
+                                    placeholder="Video-URL eingeben"
+                                    value={videoUrl}
+                                    onChange={(e) => setVideoUrl(e.target.value)}
+                                    className="w-full text-[#838B98] text-sm border border-gray-300 rounded-sm py-1 pl-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                    type="url"
+                                />
+                            )}
+                        </div>
                     )}
+
                     <hr className='w-full h-0.25 border-[#E2E8F0]'/>
                     <div className="flex justify-between items-center">
                         <div className="flex items-center">
@@ -89,7 +122,7 @@ const AddPost = () => {
                                           strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                                 <span className="text-left text-[#27364B] text-md ml-2">
-                                    {imageUrl ? 'Bild verknüpft' : 'Bild verknüpfen'}
+                                    {imageUrl ? 'Media verknüpft' : 'Media verknüpfen'}
                                 </span>
                             </button>
                         </div>

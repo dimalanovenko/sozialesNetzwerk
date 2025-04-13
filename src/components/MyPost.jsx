@@ -36,7 +36,7 @@ const MyPost = ({myPost}) => {
     return (
         <li
             className="w-full max-w-full flex flex-col items-start gap-3
-            bg-white pb-4 shadow-md"
+            bg-white py-4 shadow-md lg:rounded-lg"
             key={myPost._id}
         >
 
@@ -59,7 +59,7 @@ const MyPost = ({myPost}) => {
                     </div>
                 </div>
                     <div onClick={() => handleDelete(myPost._id)}>
-                        <MdDelete className="h-6 w-6 text-red-400 cursor-pointer"/>
+                        <MdDelete className="h-6 w-6 text-[#838B98] hover:text-[#0C1024] cursor-pointer"/>
                     </div>
             </div>
 

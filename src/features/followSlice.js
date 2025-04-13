@@ -83,5 +83,4 @@ const likeSlice = createSlice({
     },
 });
 
-export const {setIsLiked} = likeSlice.actions;
 export default likeSlice.reducer;

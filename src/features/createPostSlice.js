@@ -36,5 +36,4 @@ const createPostSlice = createSlice({
     }
 })
 
-// export const {} = feedSlice.actions;
 export default createPostSlice.reducer;

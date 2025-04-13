@@ -2,7 +2,6 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
 import {initialState as authInitialState} from "./authSlice.js";
 
-// async request
 export const sendMoney = createAsyncThunk(
     'transaction/sendMoney',
     async ({amount, userName, userAvatar, trDate, trType}) => {
@@ -13,7 +12,6 @@ export const sendMoney = createAsyncThunk(
                 "userAvatar": userAvatar,
                 "trDate": trDate,
                 "trType": trType
-                // topUp & out
             },
             {
                 headers: {
@@ -39,5 +37,4 @@ const transactionSlice = createSlice({
     }
 })
 
-export const {} = transactionSlice.actions;
 export default transactionSlice.reducer;

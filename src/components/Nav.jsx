@@ -15,7 +15,7 @@ const Nav = () => {
 
     return (
         <ul className="w-full lg:w-1/5 lg:max-h-80 py-5 bg-white flex lg:flex-col justify-around fixed bottom-0 lg:top-35 left-0 lg:left-1/20 z-50 lg:z-0 lg:rounded-lg lg:shadow-md">
-            <div className="hidden lg:block w-full rounded-xl overflow-hidden -mt-7 mb-5">
+            <div className="hidden lg:block w-full rounded-lg overflow-hidden -mt-[26px] mb-5">
 
                 <div className="lg:h-20 bg-cover lg:bg-center lg:bg-[url('https://i.ibb.co/bwBvx1q/bg.jpg')]"/>
 
@@ -60,7 +60,7 @@ const Nav = () => {
                     }`}
                     onClick={() => navigate('/feed')}
                 >
-                    Home
+                    Startseite
                 </span>
             </li>
             <hr className='hidden lg:block lg:w-8/10 lg:border-t lg:border-[#E2E8F0]'/>
@@ -119,14 +119,14 @@ const Nav = () => {
                             >
                                 <path
                                     d="M16.6666 18V16.3333C16.6666 15.4493 16.3155 14.6014 15.6903 13.9763C15.0652 13.3512 14.2174 13 13.3333 13H6.66665C5.78259 13 4.93474 13.3512 4.30962 13.9763C3.6845 14.6014 3.33331 15.4493 3.33331 16.3333V18"
-                                    stroke={isActive ? "#0C1024" : "#5D6778"}
+                                    stroke={isActive || location.pathname.includes('/change_profile') ? "#0C1024" : "#5D6778"}
                                     strokeWidth="1.75"
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                 />
                                 <path
                                     d="M10 9.66667C11.841 9.66667 13.3334 8.17428 13.3334 6.33333C13.3334 4.49238 11.841 3 10 3C8.15907 3 6.66669 4.49238 6.66669 6.33333C6.66669 8.17428 8.15907 9.66667 10 9.66667Z"
-                                    stroke={isActive ? "#0C1024" : "#5D6778"}
+                                    stroke={isActive || location.pathname.includes('/change_profile') ? "#0C1024" : "#5D6778"}
                                     strokeWidth="1.75"
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
@@ -138,11 +138,11 @@ const Nav = () => {
 
                 <span
                     className={`hidden lg:flex lg:cursor-pointer ${
-                        isProfileActive ? "text-[#0C1024]" : "text-[#5D6778]"
+                        isProfileActive || location.pathname.includes('/change_profile') ? "text-[#0C1024]" : "text-[#5D6778]"
                     }`}
                     onClick={() => navigate('/profile')}
                 >
-                    Profile
+                    Profil
                 </span>
             </li>
         </ul>
