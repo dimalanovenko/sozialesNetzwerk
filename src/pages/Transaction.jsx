@@ -40,7 +40,7 @@ const Transaction = () => {
                         placeholder='Betrag'
                         value={amount}
                         onChange={(e) => setAmount(Number(e.target.value))}
-                        className="text-[#4B5669] border rounded-lg border-[#E2E8F0] py-2 pl-6"
+                        className="text-[#4B5669] border rounded-lg border-[#E2E8F0] py-2 pl-6 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                         type="text"
                     />
                 </li>
@@ -49,7 +49,7 @@ const Transaction = () => {
                         placeholder='Benutzername'
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
-                        className="text-[#4B5669] border rounded-lg border-[#E2E8F0] py-2 pl-6"
+                        className="text-[#4B5669] border rounded-lg border-[#E2E8F0] py-2 pl-6 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                     />
                     <button
                         onKeyDown={(e) => e.key === 'Enter' ? handleSend() : null}

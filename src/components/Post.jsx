@@ -2,7 +2,8 @@ import ava from "../assets/ava.png";
 import {AiFillLike, AiOutlineLike} from "react-icons/ai";
 import {deleteLike, postLike} from "../features/likeSlice.js";
 import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import Loading from "./Loading.jsx";
 
 const Post = ({post}) => {
     const dispatch = useDispatch();

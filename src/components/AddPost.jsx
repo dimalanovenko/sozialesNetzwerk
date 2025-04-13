@@ -50,7 +50,7 @@ const AddPost = () => {
     };
 
     return (
-        <div className='w-full bg-white mt-20 lg:mt-0 lg:mb-8 lg:py-2 lg:rounded-lg shadow-md '>
+        <div className='w-full bg-white mt-20 lg:mt-0 lg:mb-8 lg:py-2 lg:rounded-lg shadow-md'>
             <div className="w-[90%] mx-auto flex items-start justify-around gap-2 pb-2 pt-4">
                 <img
                     className="w-14 h-14 rounded-full mr-2"

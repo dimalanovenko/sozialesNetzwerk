@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {getUser} from "../features/userSlice.js";
 import ava from "../assets/ava.png";
 import {follow, unfollow} from "../features/followSlice.js";
+import Loading from "../components/Loading.jsx";
 
 const User = () => {
     const {username} = useParams();
@@ -28,7 +29,9 @@ const User = () => {
         setFollowers(user.followers);
     }, [dispatch, user.followers])
 
-    return (
+    const isLoading = useSelector(state => state.users.isLoading)
+
+    return isLoading ? (<Loading/>) : (
         <section className="flex flex-col justify-between">
             <ul className="mt-20 flex flex-col items-center gap-3.5">
                 <img

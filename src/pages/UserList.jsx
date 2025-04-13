@@ -14,7 +14,6 @@ const UserList = () => {
     const [isFocused, setIsFocused] = useState(false);
     const inputRef = useRef(null);
 
-
     useEffect(() => {
         dispatch(getUsers());
     }, []);
@@ -55,7 +54,6 @@ const UserList = () => {
                     placeholder="Suchen"
                 />
             </div>
-
 
             {isFocused && (
                 <ul className="lg:w-4/10 lg:absolute lg:mt-[-1rem] mt-2 mx-auto w-9/10 max-h-64 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-lg z-50">

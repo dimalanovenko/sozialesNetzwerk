@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
 import {initialState as authInitialState} from "./authSlice.js";
 
-export const initialState = {}
+export const initialState = {isLoading: false, error: null}
 
 export const createPost = createAsyncThunk(
     'createPost/createPost',
@@ -30,9 +30,17 @@ const createPostSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(createPost.fulfilled, (state, action) => {
-                console.log(action.payload);
+            .addCase(createPost.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
             })
+            .addCase(createPost.fulfilled, (state, action) => {
+                state.isLoading = false;
+            })
+            .addCase(createPost.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload || "Something went wrong";
+            });
     }
 })
 

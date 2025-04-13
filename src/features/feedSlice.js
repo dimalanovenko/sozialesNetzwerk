@@ -9,6 +9,7 @@ export const initialState = {
     filteredMyPosts: [],
     status: null,
     error: null,
+    isLoading: false,
 }
 
 export const getPosts = createAsyncThunk(
@@ -82,6 +83,9 @@ const feedSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            .addCase(getPosts.pending, (state) => {
+                state.isLoading = true;
+            })
             .addCase(getPosts.fulfilled, (state, action) => {
                 state.posts = action.payload;
                 state.filteredPosts = action.payload
@@ -90,7 +94,11 @@ const feedSlice = createSlice({
                         (post.image && isValidMedia(post.image)) ||
                         (post.video && isValidMedia(post.video))
                     );
-                console.log('filtered posts:', state.filteredPosts);
+                state.isLoading = false;
+            })
+
+            .addCase(getMyPosts.pending, (state) => {
+                state.isLoading = true;
             })
             .addCase(getMyPosts.fulfilled, (state, action) => {
                 state.myPosts = action.payload;
@@ -101,8 +109,9 @@ const feedSlice = createSlice({
                         (post.image && isValidMedia(post.image)) ||
                         (post.video && isValidMedia(post.video))
                     );
-                console.log('filtered my posts:', state.filteredMyPosts);
+                state.isLoading = false;
             })
+
             .addCase(deletePost.fulfilled, (state) => {
                 state.status = 'succeeded';
             })
