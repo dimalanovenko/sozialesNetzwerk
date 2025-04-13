@@ -1,12 +1,56 @@
-# React + Vite
+# Социальная сеть
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Простое приложение социальной сети с адаптивной версткой. Поддерживает **мобильную** и **десктопную** версии. Реализованы **поиск**, **профиль пользователя** и **модальные окна на десктопе**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Технологии
 
-## Expanding the ESLint configuration
+- **React** — библиотека для построения пользовательского интерфейса
+- **Redux** — управление состоянием приложения
+- **Tailwind CSS** — утилитарный CSS-фреймворк для стилизации
+- **React Router** — маршрутизация
+- **Vite** — сборщик проекта
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Особенности
+
+- **Адаптивный дизайн:**
+    - 📱 Мобильная версия: поиск на отдельной странице
+    - 💻 Десктоп: поиск и профиль — в модальных окнах
+- Переход на страницу профиля пользователя через **модальное окно** (на десктопе)
+- **Быстрая и легкая навигация**
+
+---
+
+## 📦 Установка и запуск
+```bash
+
+git clone https://github.com/your-username/your-project-name.git
+cd your-project-name
+npm install
+npm run dev
+```
+
+---
+
+## 📁 Структура проекта (пример)
+
+    src/ 
+        ├── assets/ 
+        ├── components/ 
+        ├── features/ 
+        ├── pages/ 
+        ├── store/ 
+        ├── App.jsx 
+        └── main.jsx
+
+
+---
+
+## ✅ TODO
+
+- [ ] 📝 Реализация комментариев
+- [ ] 🔔 Уведомления
+- [ ] 🧪 Тестирование
