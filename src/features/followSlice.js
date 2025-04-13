@@ -57,7 +57,6 @@ const likeSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            // follow
             .addCase(follow.pending, (state) => {
                 state.status = 'loading';
             })
@@ -69,7 +68,6 @@ const likeSlice = createSlice({
                 state.error = action.payload;
             })
 
-            // unfollow
             .addCase(unfollow.pending, (state) => {
                 state.status = 'loading';
             })

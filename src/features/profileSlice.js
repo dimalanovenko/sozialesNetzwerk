@@ -2,7 +2,6 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
 import {initialState as authInitialState} from "./authSlice.js";
 
-// async request
 export const getProfile = createAsyncThunk(
     'profile/getProfile',
     async () => {
@@ -64,5 +63,4 @@ const profileSlice = createSlice({
     }
 })
 
-export const {} = profileSlice.actions;
 export default profileSlice.reducer;

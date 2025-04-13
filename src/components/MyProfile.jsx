@@ -54,19 +54,19 @@ const MyProfile = () => {
                     <span className="text-[#27364B] text-3xl font-bold">
                         {myProfile.posts_count}
                     </span>
-                    Posts
+                    Posten
                 </div>
                 <div className="flex flex-col items-center text-sm text-[#4B5669]">
                     <span className="text-[#27364B] text-3xl font-bold">
                         {myProfile.followers}
                     </span>
-                    Followers
+                    Verfolger
                 </div>
                 <div className="flex flex-col items-center text-sm text-[#4B5669]">
                     <span className="text-[#27364B] text-3xl font-bold">
                         {myProfile.following}
                     </span>
-                    Following
+                    Verfolgte
                 </div>
             </li>
 
@@ -74,21 +74,20 @@ const MyProfile = () => {
                     <span className="text-[#27364B] text-2xl font-medium">
                         {myProfile.posts_count}
                     </span>
-                Posts
+                Posten
             </li>
             <li className="lg:hidden flex flex-col items-center text-lg text-[#4B5669]">
                     <span className="text-[#27364B] text-2xl font-medium">
                         {myProfile.followers}
                     </span>
-                Followers
+                Verfolger
             </li>
             <li className="lg:hidden flex flex-col items-center text-lg text-[#4B5669]">
                     <span className="text-[#27364B] text-2xl font-medium">
                         {myProfile.following}
                     </span>
-                Following
+                Verfolgte
             </li>
-
         </ul>
     )
 }

@@ -29,7 +29,7 @@ const User = () => {
     }, [dispatch, user.followers])
 
     return (
-        <div className="flex flex-col justify-between">
+        <section className="flex flex-col justify-between">
             <ul className="mt-20 flex flex-col items-center gap-3.5">
                 <img
                     className="w-40 h-40 rounded-full"
@@ -42,26 +42,26 @@ const User = () => {
                 <li className="flex flex-col items-center text-[#5D6778] text-xl">
                     {'@' + user.username}
                 </li>
-                <li className="w-[50%] lg:w-full mx-auto text-center flex-col items-center text-lg text-[#4B5669]">
+                <li className="w-[90%] lg:w-full mx-auto text-center flex-col items-center text-lg text-[#4B5669]">
                     {user.bio}
                 </li>
                 <li className="flex flex-col items-center text-lg text-[#4B5669]">
                     <span className="text-[#27364B] text-2xl font-medium">
                         {user.posts_count}
                     </span>
-                    Posts
+                    Posten
                 </li>
                 <li className="flex flex-col items-center text-lg text-[#4B5669]">
                     <span className="text-[#27364B] text-2xl font-medium">
-                        {user.followers}
+                        {followers}
                     </span>
-                    Followers
+                    Verfolger
                 </li>
                 <li className="flex flex-col items-center text-lg text-[#4B5669]">
                     <span className="text-[#27364B] text-2xl font-medium">
                         {user.following}
                     </span>
-                    Following
+                    Verfolgte
                 </li>
                 <li className="flex flex-col items-center gap-5">
                     {followed ?
@@ -72,9 +72,8 @@ const User = () => {
                                 setFollowers((prev) => prev - 1);
                                 localStorage.setItem(`is_${username}_followed`, "false");
                             }}
-                            className="bg-[#4C68D5] text-white rounded-2xl py-2 px-4 cursor-pointer mt-5
-                                hover:bg-white hover:text-zinc-800">
-                            unfollow
+                            className="bg-[#4C68D5] text-white rounded-2xl py-2 px-4 cursor-pointer mt-5">
+                            nicht folgen
                         </button>
                         :
                         <button
@@ -84,13 +83,13 @@ const User = () => {
                                 setFollowers((prev) => prev + 1);
                                 localStorage.setItem(`is_${username}_followed`, "true");
                             }}
-                            className="bg-[#4C68D5] text-white rounded-2xl py-2 px-4 cursor-pointer mt-5">
-                            follow
+                            className="bg-[#4C68D5] text-white rounded-2xl py-2 px-4 cursor-pointer mt-5 lg:mb-0 mb-30">
+                            folgen
                         </button>
                     }
                 </li>
             </ul>
-        </div>
+        </section>
     )
 }
 

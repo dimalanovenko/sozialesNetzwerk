@@ -28,7 +28,7 @@ const Transaction = () => {
     }
 
     return (
-        <div className={`flex flex-col items-center justify-center h-[100vh] lg:w-1/5 lg:h-70 lg:fixed lg:right-1/20 lg:bg-white lg:rounded-lg lg:shadow-md ${location.pathname === '/profile' || location.pathname === '/change_profile' ? 'lg:top-102' : 'lg:top-35'}`}>
+        <section className={`flex flex-col items-center justify-center h-[100vh] lg:w-1/5 lg:h-70 lg:fixed lg:right-1/20 lg:bg-white lg:rounded-lg lg:shadow-md ${location.pathname === '/profile' || location.pathname === '/change_profile' ? 'lg:top-102' : 'lg:top-35'}`}>
             <ul className="flex flex-col text-lg gap-4">
                 <li className="hidden lg:block">
                     <h1 className='text-gray-700 text-2xl font-bold text-center mb-5'>
@@ -62,7 +62,7 @@ const Transaction = () => {
                     </button>
                 </li>
             </ul>
-        </div>
+        </section>
     )
 }
 

@@ -17,7 +17,7 @@ const Feed = () => {
     const filteredPosts = useSelector((state) => state.feed.filteredPosts);
 
     return (
-        <div className="w-full flex flex-col items-center justify-between bg-[#FAFBFF]">
+        <main className="w-full flex flex-col items-center justify-between bg-[#FAFBFF]">
             <Header/>
 
             <div className='lg:hidden w-full'>
@@ -51,7 +51,7 @@ const Feed = () => {
                     />
                 ))}
             </ul>
-        </div>
+        </main>
     )
 }
 

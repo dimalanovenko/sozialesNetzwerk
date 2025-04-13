@@ -53,7 +53,7 @@ const Auth = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center text-white gap-3 h-[100vh]">
+        <section className="flex flex-col items-center justify-center text-white gap-3 h-[100vh]">
             <div className="flex items-center">
                 <i>
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,7 +111,7 @@ const Auth = () => {
                     <p className='cursor-pointer'>Haben Sie noch kein Konto? <span className='font-bold'>Registrieren</span></p>
                 }
             </button>
-        </div>
+        </section>
     );
 };
 

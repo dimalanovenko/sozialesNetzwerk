@@ -36,7 +36,7 @@ const ChangeProfile = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-between lg:h-[100vh] lg:bg-[#FAFBFF]">
+        <section className="flex flex-col items-center justify-between lg:h-[100vh] lg:bg-[#FAFBFF]">
             <Header/>
             <MyProfile/>
 
@@ -106,7 +106,7 @@ const ChangeProfile = () => {
                 </div>
                 <Footer/>
             </div>
-        </div>
+        </section>
     )
 }
 

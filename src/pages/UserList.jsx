@@ -31,7 +31,7 @@ const UserList = () => {
     };
 
     return (
-        <div className='w-full'>
+        <section className='w-full'>
             <div className="relative lg:w-full w-9/10 mx-auto lg:mx-0 lg:h-24 lg:flex lg:items-center">
                 <svg
                     width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +83,7 @@ const UserList = () => {
                         )}
                 </ul>
             )}
-        </div>
+        </section>
     );
 };
 

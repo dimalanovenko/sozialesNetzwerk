@@ -24,7 +24,7 @@ const Profile = () => {
 
 
     return (
-        <div className="flex flex-col items-center justify-between lg:bg-[#FAFBFF]">
+        <section className="flex flex-col items-center justify-between lg:bg-[#FAFBFF]">
             <Header/>
             <MyProfile/>
 
@@ -44,7 +44,7 @@ const Profile = () => {
                 <Transaction/>
             </div>
             <Footer/>
-        </div>
+        </section>
     )
 }
 
