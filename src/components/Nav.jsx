@@ -14,7 +14,7 @@ const Nav = () => {
     const myProfile = useSelector(state => state.profile.profile);
 
     return (
-        <ul className="w-full lg:w-1/5 lg:max-h-80 py-5 bg-white flex lg:flex-col justify-around fixed bottom-0 lg:top-35 left-0 lg:left-1/20 z-50 lg:z-0 lg:rounded-lg lg:shadow-md">
+        <ul className="w-full lg:w-1/5 lg:max-h-80 py-5 bg-white flex lg:flex-col justify-around fixed bottom-0 lg:top-35 left-0 lg:left-1/20 z-49 lg:z-0 lg:rounded-lg lg:shadow-md">
             <div className="hidden lg:block w-full rounded-lg overflow-hidden -mt-[26px] mb-5">
 
                 <div className="lg:h-20 bg-cover lg:bg-center lg:bg-[url('https://i.ibb.co/bwBvx1q/bg.jpg')]"/>
