@@ -9,7 +9,7 @@ import Profile from "./pages/Profile.jsx";
 import UserList from "./pages/UserList.jsx";
 import User from "./pages/User.jsx";
 import Transaction from "./pages/Transaction.jsx";
-import NotFound from "./components/NotFound.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
     const navigate = useNavigate();
